@@ -1,0 +1,406 @@
+{
+  "cat": {
+    "name": "Gorda"
+  },
+  "welcome": {
+    "en": "Welcome to the Book Library",
+    "pt": "Bem-vindo à Biblioteca de Livros"
+  },
+  "sections": [
+    {
+      "id": "thomas-sowell",
+      "title": {
+        "en": "Thomas Sowell",
+        "pt": "Thomas Sowell"
+      },
+      "subtitle": {
+        "en": "Economics, Political Science",
+        "pt": "Economia, Ciência Política"
+      },
+      "description": {
+        "en": "Thomas Sowell is an American economist and political commentator known for his work on economics, race, and social policy.",
+        "pt": "Thomas Sowell é um economista e comentarista político americano conhecido por seu trabalho em economia, raça e política social."
+      },
+      "books": [
+        {
+          "title": {
+            "en": "The Vision of the Anointed",
+            "pt": "Os Ungidos"
+          },
+          "author": "Thomas Sowell",
+          "description": {
+            "en": "In this book, Sowell critiques the intellectual elite and their influence on public policy, arguing that their well-intentioned but misguided ideas often lead to negative consequences.",
+            "pt": "Neste livro, Sowell critica a elite intelectual e sua influência na política pública, argumentando que suas ideias bem-intencionadas, mas equivocadas, muitas vezes levam a consequências negativas."
+          },
+          "image": {
+            "en": "https://m.media-amazon.com/images/I/81GP7-5oA0L._SY466_.jpg",
+            "pt": "https://m.media-amazon.com/images/I/714KlDkst5L._SL466_.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Vision-Anointed-Self-Congratulation-Social-Policy/dp/046508995X/",
+            "pt": "https://www.amazon.com.br/Os-Ungidos-fantasia-pol%C3%ADticas-progressistas-ebook/dp/B0BP2SGRWC/"
+          }
+        },
+        {
+          "title": {
+            "en": "Intellectuals and Society",
+            "pt": "Intelectuais e a sociedade"
+          },
+          "author": "Thomas Sowell",
+          "description": {
+            "en": "In this book, Sowell examines the role of intellectuals in society and their influence on public opinion and policy, arguing that they often promote ideas that are disconnected from reality.",
+            "pt": "Neste livro, Sowell examina o papel dos intelectuais na sociedade e sua influência na opinião pública e na política, argumentando que eles frequentemente promovem ideias que estão desconectadas da realidade."
+          },
+          "image": {
+            "en": "https://m.media-amazon.com/images/I/61e3L1G+NiL._SL466_.jpg",
+            "pt": "https://m.media-amazon.com/images/I/71nS0WxwEqL._SL466_.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Intellectuals-Society-Thomas-Sowell/dp/0465025226/",
+            "pt": "https://www.amazon.com.br/Intelectuais-sociedade-impacto-desastroso-descoladas/dp/6559578380/"
+          }
+        },
+        {
+          "title": {
+            "en": "Our Culture, What's Left Of It",
+            "pt": "Nossa Cultura... Ou o que Restou Dela"
+          },
+          "author": "Theodore Dalrymple",
+          "description": {
+            "en": "",
+            "pt": ""
+          },
+          "image": {
+            "en": "https://m.media-amazon.com/images/I/41GRjpWnxdL.jpg",
+            "pt": "https://m.media-amazon.com/images/I/616k7KV+qEL._SL466_.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/dp/B004AM5PJA/",
+            "pt": "https://www.amazon.com.br/Nossa-Cultura-que-Restou-Dela/dp/8580331633/"
+          }
+        }
+      ]
+    },
+    {
+      "id": "charles-dickens",
+      "title": {
+        "en": "Charles Dickens",
+        "pt": "Charles Dickens"
+      },
+      "subtitle": {
+        "en": "Classics",
+        "pt": "Clássicos"
+      },
+      "description": {
+        "en": "Charles Dickens was an English writer and social critic, known for his vivid characters, memorable stories, and commentary on social issues of his time.",
+        "pt": "Charles Dickens foi um escritor e crítico social inglês, conhecido por seus personagens vívidos, histórias memoráveis e comentários sobre questões sociais de sua época."
+      },
+      "books": [
+        {
+          "title": {
+            "en": "David Copperfield",
+            "pt": "David Copperfield"
+          },
+          "author": "Charles Dickens",
+          "description": {
+            "en": "A semi-autobiographical novel that follows the life of David Copperfield from childhood to adulthood, exploring themes of personal growth, social class, and the human condition.",
+            "pt": "Um romance semi-autobiográfico que acompanha a vida de David Copperfield desde a infância até a idade adulta, explorando temas de crescimento pessoal, classe social e a condição humana."
+          },
+          "image": {
+            "en": "https://m.media-amazon.com/images/I/81Al+epNu4L._SL466_.jpg",
+            "pt": "https://m.media-amazon.com/images/I/91gopwRYE3L._SL466_.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Copperfield-Penguin-Classics-Charles-Dickens/dp/0140439447/",
+            "pt": "https://www.amazon.com.br/David-Copperfield-Charles-Dickens/dp/8582850670/"
+          }
+        },
+        {
+          "title": {
+            "en": "Great Expectations",
+            "pt": "Grandes esperanças"
+          },
+          "author": "Charles Dickens",
+          "description": {
+            "en": "A coming-of-age novel following the orphan Pip, whose life is transformed by a mysterious benefactor. Dickens explores ambition, social class, guilt, and the true meaning of being a gentleman.",
+            "pt": "Um romance de formação que acompanha o órfão Pip, cuja vida é transformada por um benfeitor misterioso. Dickens explora a ambição, a classe social, a culpa e o verdadeiro significado de ser um cavalheiro."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0141439564.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8563560476.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Expectations-Penguin-Classics-Charles-Dickens/dp/0141439564/",
+            "pt": "https://www.amazon.com.br/Grandes-esperan%C3%A7as-Charles-Dickens/dp/8563560476/"
+          }
+        },
+        {
+          "title": {
+            "en": "A Christmas Carol",
+            "pt": "Um conto de Natal"
+          },
+          "author": "Charles Dickens",
+          "description": {
+            "en": "The classic tale of Ebenezer Scrooge, a miserly old man visited on Christmas Eve by the ghosts of Christmas Past, Present, and Yet to Come, who lead him toward redemption and compassion.",
+            "pt": "O clássico conto de Ebenezer Scrooge, um velho avarento que, na véspera de Natal, é visitado pelos espíritos do Natal Passado, Presente e Futuro, que o conduzem à redenção e à compaixão."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0143122495.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/6558700360.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Christmas-Carol-Penguin-Classics/dp/0143122495/",
+            "pt": "https://www.amazon.com.br/Um-Conto-Natal-Charles-Dickens/dp/6558700360/"
+          }
+        },
+        {
+          "title": {
+            "en": "Crime and Punishment",
+            "pt": "Crime e Castigo"
+          },
+          "author": "Fiódor Dostoiévski",
+          "description": {
+            "en": "A destitute former student, Raskolnikov, murders a pawnbroker to test his theory that extraordinary men are above the law, then spirals through guilt, paranoia, and the search for redemption.",
+            "pt": "Raskólnikov, um ex-estudante miserável, assassina uma velha usurária para testar sua teoria de que os homens extraordinários estão acima da lei, mergulhando então na culpa, na paranoia e na busca pela redenção."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0679734503.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8573266465.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Crime-Punishment-Volokhonsky-Translation-Classics/dp/0679734503/",
+            "pt": "https://www.amazon.com.br/Crime-castigo-Fi%C3%B3dor-Dostoi%C3%A9vski/dp/8573266465/"
+          }
+        },
+        {
+          "title": {
+            "en": "Demons",
+            "pt": "Os demônios"
+          },
+          "author": "Fiódor Dostoiévski",
+          "description": {
+            "en": "Inspired by a real political murder, this darkly comic novel follows a provincial town thrown into chaos by a group of nihilist revolutionaries and their charismatic, destructive leader.",
+            "pt": "Inspirado por um assassinato político real, este romance sombrio e satírico acompanha uma cidade provinciana lançada ao caos por um grupo de revolucionários niilistas e seu líder carismático e destrutivo."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0375411224.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8573263059.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Demons-Everymans-Library-Fyodor-Dostoevsky/dp/0375411224/",
+            "pt": "https://www.amazon.com.br/Os-dem%C3%B4nios-Fi%C3%B3dor-Dostoi%C3%A9vski/dp/8573263059/"
+          }
+        },
+        {
+          "title": {
+            "en": "The Brothers Karamazov",
+            "pt": "Os Irmãos Karamázov"
+          },
+          "author": "Fiódor Dostoiévski",
+          "description": {
+            "en": "Dostoevsky's final masterpiece explores faith, doubt, and free will through the passions and rivalries of three brothers and the murder of their dissolute father.",
+            "pt": "A obra-prima final de Dostoiévski explora a fé, a dúvida e o livre-arbítrio através das paixões e rivalidades de três irmãos e do assassinato de seu pai devasso."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0374528373.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8573265388.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Brothers-Karamazov-Fyodor-Dostoevsky/dp/0374528373/",
+            "pt": "https://www.amazon.com.br/Os-Irm%C3%A3os-Karamazov-Fiodor-Dostoievski/dp/8573265388/"
+          }
+        },
+        {
+          "title": {
+            "en": "The Old Man and the Sea",
+            "pt": "O velho e o mar"
+          },
+          "author": "Ernest Hemingway",
+          "description": {
+            "en": "An aging Cuban fisherman battles a giant marlin far out in the Gulf Stream, in Hemingway's spare, Pulitzer Prize-winning parable of endurance and dignity.",
+            "pt": "Um velho pescador cubano trava uma batalha contra um marlim gigante nas águas da Corrente do Golfo, na parábola enxuta de Hemingway sobre perseverança e dignidade, vencedora do Prêmio Pulitzer."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0684830493.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/852861798X.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Old-Man-Sea-Scribner-Classics/dp/0684830493/",
+            "pt": "https://www.amazon.com.br/velho-mar-Ernest-Hemingway/dp/852861798X/"
+          }
+        },
+        {
+          "title": {
+            "en": "For Whom the Bell Tolls",
+            "pt": "Por quem os sinos dobram"
+          },
+          "author": "Ernest Hemingway",
+          "description": {
+            "en": "During the Spanish Civil War, American volunteer Robert Jordan is sent to blow up a bridge behind enemy lines, where he confronts love, duty, and mortality over three intense days.",
+            "pt": "Durante a Guerra Civil Espanhola, o voluntário americano Robert Jordan é enviado para explodir uma ponte atrás das linhas inimigas, onde enfrenta o amor, o dever e a morte ao longo de três dias intensos."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0684803356.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/852861834X.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Whom-Bell-Tolls-Ernest-Hemingway/dp/0684803356/",
+            "pt": "https://www.amazon.com.br/Por-quem-os-sinos-dobram/dp/852861834X/"
+          }
+        },
+        {
+          "title": {
+            "en": "A Farewell to Arms",
+            "pt": "Adeus às armas"
+          },
+          "author": "Ernest Hemingway",
+          "description": {
+            "en": "Set on the Italian front of World War I, Hemingway's novel traces the love affair between an American ambulance driver and an English nurse amid the disillusionment of war.",
+            "pt": "Ambientado na frente italiana da Primeira Guerra Mundial, o romance de Hemingway narra o caso de amor entre um motorista de ambulância americano e uma enfermeira inglesa em meio à desilusão da guerra."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0684801469.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8528618323.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Farewell-Arms-Ernest-Hemingway/dp/0684801469/",
+            "pt": "https://www.amazon.com.br/Adeus-%C3%A0s-armas-Ernest-Hemingway/dp/8528618323/"
+          }
+        },
+        {
+          "title": {
+            "en": "First Love",
+            "pt": "Primeiro amor"
+          },
+          "author": "Ivan Turguêniev",
+          "description": {
+            "en": "In this celebrated novella, a young man recalls the summer he fell hopelessly in love with an older woman, only to discover the painful truth about his rival.",
+            "pt": "Nesta célebre novela, um jovem relembra o verão em que se apaixonou perdidamente por uma mulher mais velha, apenas para descobrir a dolorosa verdade sobre seu rival."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0140443355.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8582850212.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/First-Love-Penguin-Classics-Turgenev/dp/0140443355/",
+            "pt": "https://www.amazon.com.br/Primeiro-amor-Ivan-Turgu%C3%AAniev/dp/8582850212/"
+          }
+        },
+        {
+          "title": {
+            "en": "Sketches from a Hunter's Album",
+            "pt": "Memórias de um caçador"
+          },
+          "author": "Ivan Turguêniev",
+          "description": {
+            "en": "A series of sketches drawn from Turgenev's travels through rural Russia, whose sympathetic portraits of the serfs helped turn public opinion against serfdom.",
+            "pt": "Uma série de esboços colhidos das viagens de Turguêniev pela Rússia rural, cujos retratos compassivos dos servos ajudaram a voltar a opinião pública contra a servidão."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0140445226.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8573265434.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Sketches-Hunters-Album-Complete-Classics/dp/0140445226/",
+            "pt": "https://www.amazon.com.br/Mem%C3%B3rias-um-ca%C3%A7ador-Ivan-Turgu%C3%AAniev/dp/8573265434/"
+          }
+        },
+        {
+          "title": {
+            "en": "The Diary of a Superfluous Man",
+            "pt": "Diário de um homem supérfluo"
+          },
+          "author": "Ivan Turguêniev",
+          "description": {
+            "en": "A dying man reflects on his empty, ineffectual life, giving voice to the 'superfluous man' — a defining type of nineteenth-century Russian literature.",
+            "pt": "Um homem à beira da morte reflete sobre sua vida vazia e inútil, dando voz ao 'homem supérfluo' — um tipo característico da literatura russa do século XIX."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0393319202.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8573267216.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Diary-Superfluous-Man-Ivan-Turgenev/dp/0393319202/",
+            "pt": "https://www.amazon.com.br/Di%C3%A1rio-homem-sup%C3%A9rfluo-Ivan-Turgu%C3%AAniev/dp/8573267216/"
+          }
+        },
+        {
+          "title": {
+            "en": "Fathers and Sons",
+            "pt": "Pais e filhos"
+          },
+          "author": "Ivan Turguêniev",
+          "description": {
+            "en": "The clash between generations comes alive as the young nihilist Bazarov challenges the values of his elders in this landmark of Russian realism.",
+            "pt": "O conflito entre gerações ganha vida quando o jovem niilista Bazárov desafia os valores de seus mais velhos, neste marco do realismo russo."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0140441476.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8535932321.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Fathers-Sons-Penguin-Classics-Turgenev/dp/0140441476/",
+            "pt": "https://www.amazon.com.br/Pais-filhos-Ivan-Turgu%C3%AAniev/dp/8535932321/"
+          }
+        },
+        {
+          "title": {
+            "en": "Heart of Darkness",
+            "pt": "Coração das trevas"
+          },
+          "author": "Joseph Conrad",
+          "description": {
+            "en": "Sailor Marlow journeys up the Congo River in search of the enigmatic ivory trader Kurtz, in Conrad's haunting meditation on imperialism and the darkness within.",
+            "pt": "O marinheiro Marlow viaja rio Congo acima em busca do enigmático traficante de marfim Kurtz, na perturbadora meditação de Conrad sobre o imperialismo e a escuridão interior."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0140186522.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8571064172.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Heart-Darkness-Classic-20th-Century-Penguin/dp/0140186522/",
+            "pt": "https://www.amazon.com.br/Coracao-Das-Trevas-Joseph-Conrad/dp/8571064172/"
+          }
+        },
+        {
+          "title": {
+            "en": "The Posthumous Memoirs of Brás Cubas",
+            "pt": "Memórias póstumas de Brás Cubas"
+          },
+          "author": "Machado de Assis",
+          "description": {
+            "en": "Narrated from beyond the grave by a dead aristocrat, Machado de Assis's ironic, playful masterpiece dismantles the vanities of nineteenth-century Brazilian society.",
+            "pt": "Narrada do além-túmulo por um defunto aristocrata, a obra-prima irônica e brincalhona de Machado de Assis desmonta as vaidades da sociedade brasileira do século XIX."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0143135031.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8582850018.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Posthumous-Memoirs-Br%C3%A1s-Cubas/dp/0143135031/",
+            "pt": "https://www.amazon.com.br/Mem%C3%B3rias-p%C3%B3stumas-Cubas-Machado-Assis/dp/8582850018/"
+          }
+        },
+        {
+          "title": {
+            "en": "Barren Lives",
+            "pt": "Vidas secas"
+          },
+          "author": "Graciliano Ramos",
+          "description": {
+            "en": "A poor family of herders wanders the drought-stricken Brazilian sertão in search of survival, in Graciliano Ramos's stark masterpiece of regionalist literature.",
+            "pt": "Uma família de retirantes pobres perambula pelo sertão brasileiro castigado pela seca em busca de sobrevivência, na obra-prima árida e contundente de Graciliano Ramos."
+          },
+          "image": {
+            "en": "https://images-na.ssl-images-amazon.com/images/P/0292701330.01.LZZZZZZZ.jpg",
+            "pt": "https://images-na.ssl-images-amazon.com/images/P/8501114782.01.LZZZZZZZ.jpg"
+          },
+          "link": {
+            "en": "https://www.amazon.com/Barren-Lives-Texas-Pan-American/dp/0292701330/",
+            "pt": "https://www.amazon.com.br/Vidas-secas-Graciliano-Ramos/dp/8501114782/"
+          }
+        }
+      ]
+    }
+  ]
+}
