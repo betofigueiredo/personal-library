@@ -328,6 +328,7 @@ export function Island() {
             position={[spot.x, 0, spot.z]}
             rotation={spot.rotation}
             title={s.title.en}
+            subtitle={s.subtitle.en}
             seed={i * 40}
           />
         )

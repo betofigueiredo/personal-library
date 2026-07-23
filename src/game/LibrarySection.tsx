@@ -2,24 +2,23 @@ import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
-import { Instance, Instances } from '@react-three/drei'
 import { Bench, ShelfBody } from './Library'
 import { stoneTexture } from './textures'
 import { makeRng } from './rng'
 import { useGame } from './useGame'
+import { SectionPlaque } from './SectionPlaque'
 
 /**
  * One library "section": an open-air reading court in stone and wood. Two
  * stone walls form an L (the rest stays open to the garden), bookshelves
- * lean against them, glowing crystals light the open corners, and the
- * section's name is written on the flagstone floor with pebbles.
+ * lean against them, glowing crystals light the open corners, and a carved
+ * wooden gateway at the entrance names the court.
  */
 
 const STONE = '#9b9890'
 const WOOD = '#6b4a2e'
 const CRYSTAL = '#9ff0e0'
 const CRYSTAL_GLOW = '#2fc8b0'
-const PEBBLES = ['#e8dcc0', '#dcccaa', '#cfc0a0', '#e2d6b8']
 
 /* ------------------------------ Stone walls ------------------------------- */
 
@@ -107,125 +106,6 @@ function CrystalPillar({
         color="#7fe0d0"
       />
     </RigidBody>
-  )
-}
-
-/* --------------------------- Pebble floor text ---------------------------- */
-
-interface Pebble {
-  x: number
-  z: number
-  s: number
-  ry: number
-  c: number
-}
-
-/**
- * Renders `text` to an offscreen canvas, samples the filled pixels, and turns
- * each sample into a little pebble — so any section name can be "written" in
- * stones on the ground. One instanced draw call regardless of length.
- */
-function usePebbleLayout(text: string): {
-  pebbles: Pebble[]
-  canvasW: number
-  canvasH: number
-  underlay: THREE.CanvasTexture
-} {
-  return useMemo(() => {
-    const H = 72
-    const c = document.createElement('canvas')
-    // A heavy sans reads far better than a serif once it's made of pebbles.
-    const font = `900 54px Arial, sans-serif`
-    let ctx = c.getContext('2d')!
-    ctx.font = font
-    c.width = Math.ceil(ctx.measureText(text).width) + 10
-    c.height = H
-    ctx = c.getContext('2d')! // sizing the canvas resets its state
-    ctx.font = font
-    ctx.textBaseline = 'middle'
-    ctx.fillStyle = '#fff'
-    ctx.fillText(text, 5, H / 2 + 2)
-
-    const img = ctx.getImageData(0, 0, c.width, c.height).data
-    const rand = makeRng(1 + text.length * 31)
-    const pebbles: Pebble[] = []
-    const step = 3
-    for (let py = 0; py < c.height; py += step) {
-      for (let px = 0; px < c.width; px += step) {
-        if (img[(py * c.width + px) * 4 + 3] > 100) {
-          pebbles.push({
-            x: px - c.width / 2 + (rand() - 0.5) * 0.8,
-            z: py - H / 2 + (rand() - 0.5) * 0.8,
-            s: 0.7 + rand() * 0.55,
-            ry: rand() * Math.PI,
-            c: (rand() * PEBBLES.length) | 0,
-          })
-        }
-      }
-    }
-    // Engraved underlay: the same text, dark and softly blurred, painted on a
-    // transparent canvas. Laid under the pebbles it reads as a groove swept
-    // into the flagstones and makes the strokes legible from a distance.
-    const uc = document.createElement('canvas')
-    uc.width = c.width * 2
-    uc.height = H * 2
-    const uctx = uc.getContext('2d')!
-    uctx.scale(2, 2)
-    uctx.font = font
-    uctx.textBaseline = 'middle'
-    uctx.shadowColor = 'rgba(24,20,14,0.9)'
-    uctx.shadowBlur = 7
-    uctx.fillStyle = '#332c20'
-    uctx.fillText(text, 5, H / 2 + 2)
-    const underlay = new THREE.CanvasTexture(uc)
-    underlay.anisotropy = 8
-
-    return { pebbles, canvasW: c.width, canvasH: H, underlay }
-  }, [text])
-}
-
-/** The section name laid on the floor in pebbles, reading toward +Z. */
-function PebbleText({
-  text,
-  position,
-  width,
-}: {
-  text: string
-  position: [number, number, number]
-  width: number
-}) {
-  const { pebbles, canvasW, canvasH, underlay } = usePebbleLayout(text)
-  const k = width / canvasW // canvas px → world units
-  const r = k * 3 * 0.62 // pebble radius a bit under the sampling step, so letters keep gaps
-  // Stretch the letters along z (like road markings) so they stay readable
-  // from the follow camera's shallow angle.
-  const zStretch = 1.5
-  return (
-    <group position={position}>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.008, 0]}>
-        <planeGeometry args={[canvasW * k, canvasH * k * zStretch]} />
-        <meshStandardMaterial
-          map={underlay}
-          transparent
-          opacity={0.6}
-          depthWrite={false}
-          roughness={1}
-        />
-      </mesh>
-      <Instances castShadow receiveShadow limit={pebbles.length}>
-        <dodecahedronGeometry args={[1, 0]} />
-        <meshStandardMaterial roughness={0.9} flatShading />
-        {pebbles.map((p, i) => (
-          <Instance
-            key={i}
-            position={[p.x * k, r * p.s * 0.5, p.z * k * zStretch]}
-            scale={r * p.s}
-            rotation={[0, p.ry, 0]}
-            color={PEBBLES[p.c]}
-          />
-        ))}
-      </Instances>
-    </group>
   )
 }
 
@@ -358,12 +238,14 @@ export function LibrarySection({
   position = [0, 0, 0],
   rotation = 0,
   title,
+  subtitle,
   id,
   seed = 0,
 }: {
   position?: [number, number, number]
   rotation?: number
   title: string
+  subtitle?: string
   /** Section id from data.json — lights the court up while the cat is in it. */
   id?: string
   seed?: number
@@ -388,14 +270,16 @@ export function LibrarySection({
         </mesh>
       ))}
 
-      {/* The two stone walls — an L open toward the path and the meadow */}
+      {/* The two stone walls — an L open toward the path and the meadow. The
+          left wall (which carries shelves) ends in the named entrance pier. */}
       <StoneWall position={[-0.2, 0, -3.7]} size={[8.4, 2.1, 0.45]} />
       <StoneWall position={[-4.2, 0, -1.2]} size={[0.45, 2.1, 5.4]} />
 
       {/* Glowing crystals guard the open ends of each wall */}
       <CrystalPillar position={[4.35, 0, -3.7]} height={1.6} active={active} />
-      <CrystalPillar position={[-4.2, 0, 1.9]} height={1.6} active={active} />
       <CrystalPillar position={[3.7, 0, 2.8]} height={1.1} active={active} />
+      {/* A low lamp by the entrance sign, lighting the name-plate */}
+      <CrystalPillar position={[-3.3, 0, 2.7]} height={1.1} active={active} />
 
       {/* Shelves leaning on the walls */}
       <ShelfBody position={[-2.5, 0.04, -3.27]} seed={100 + seed} />
@@ -415,8 +299,14 @@ export function LibrarySection({
       </mesh>
       <Bench position={[-0.3, 0.04, 0.9]} rotation={Math.PI} />
 
-      {/* The section's name, written in pebbles across the entrance */}
-      <PebbleText text={title.toUpperCase()} position={[0.4, 0.03, 3.2]} width={6.6} />
+      {/* The named pier at the front end of the left (shelved) wall */}
+      <SectionPlaque
+        title={title}
+        subtitle={subtitle}
+        seed={seed}
+        position={[-4.2, 0, 1.85]}
+        rotation={0.2}
+      />
 
       {/* The magic */}
       <Fireflies seed={seed} />

@@ -2,35 +2,43 @@ import { useRef, type RefObject } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-// A low-poly black cat in the style of the papercraft figurines: a deep
-// warm black coat in fine flat facets, with the figurine's tuxedo markings —
-// cream muzzle, chest, paws and tail tip — small amber eyes and pointed ears
-// with softer inners. Natural cat proportions rather than chibi — the head
-// sits forward on a longer body.
+// A cute, smooth-shaded black tuxedo cat — Gorda. Soft, rounded, chibi
+// proportions: a big round head on a chubby little body, short stubby legs and
+// a plush curled-up tail. Her tuxedo markings (cream muzzle, chest, paws and
+// tail tip) and warm-black coat are kept from the figurine, but everything is
+// built from smooth spheres now instead of flat facets, with big glossy amber
+// eyes and catchlights so she reads as friendly and expressive.
 const FUR = '#2b2226' // warm black with a plum cast so sunset light plays on it
-const FUR_DARK = '#584a44' // inner ears
-const CREAM = '#eee0c2' // muzzle, chest, paws, tail tip
-const EYE = '#e0a83e' // amber, faintly lit so she has a face at dusk
-const NOSE = '#3a2b26'
+const CREAM = '#eee0c2' // muzzle, chest, cheeks, paws, tail tip
+const EYE = '#e0a83e' // amber iris, faintly lit so she has a face at dusk
+const PUPIL = '#1c1418' // soft-black pupil
+const PINK = '#dda6a1' // button nose and inner ears
+const HILITE = '#fff6e8' // eye catchlight
 
 /** Hip positions: [x, z]. Front pair at +z (nose side), back pair at -z. */
 const LEGS: [number, number][] = [
-  [-0.13, 0.2], // front-left
-  [0.13, 0.2], // front-right
-  [-0.13, -0.22], // back-left
-  [0.13, -0.22], // back-right
+  [-0.14, 0.19], // front-left
+  [0.14, 0.19], // front-right
+  [-0.14, -0.23], // back-left
+  [0.14, -0.23], // back-right
 ]
 
-/**
- * A stylized low-poly cat built from faceted primitives, animated
- * procedurally. `motion` is a live 0..1 ref (0 = idle, 1 = walking) driven by
- * the Player. The cat faces +Z in local space.
- */
 // Leg-swings per unit of ground speed, per second. Calibrated so the gait
 // reads naturally across the Player's walk speed and keeps the paws from
 // sliding on the ground.
 const STRIDE_CADENCE = 2.2
 
+// Smooth fur — soft and plush rather than shiny.
+function Fur({ color = FUR }: { color?: string }) {
+  return <meshStandardMaterial color={color} roughness={0.85} />
+}
+
+/**
+ * A cute, smooth-shaded cat built from rounded primitives, animated
+ * procedurally. `motion` is a live 0..1 ref (0 = idle, 1 = walking) and `speed`
+ * is the live ground speed that drives the gait cadence — both from the Player.
+ * The cat faces +Z in local space.
+ */
 export function Cat({
   motion,
   speed,
@@ -76,9 +84,9 @@ export function Cat({
 
     // Tail: lively sway while walking, slow flick when idle.
     if (tail.current) {
-      const speed = m > 0.1 ? 9 : 2.5
-      tail.current.rotation.z = Math.sin(t * speed) * (0.35 + 0.15 * m)
-      tail.current.rotation.x = -0.7 + Math.sin(t * speed * 0.5) * 0.1
+      const swaySpeed = m > 0.1 ? 9 : 2.5
+      tail.current.rotation.z = Math.sin(t * swaySpeed) * (0.35 + 0.15 * m)
+      tail.current.rotation.x = -0.5 + Math.sin(t * swaySpeed * 0.5) * 0.1
     }
   })
 
@@ -86,126 +94,139 @@ export function Cat({
     <group>
       {/* Everything that bobs sits under `body` */}
       <group ref={body}>
-        {/* Torso — a long faceted pebble, tilted nose-up so the shoulders
-            rise toward the neck instead of ending in a ball. Detail 1 with
-            flat shading keeps the papercraft look with finer facets. */}
-        <mesh
-          castShadow
-          position={[0, 0.3, -0.05]}
-          rotation={[-0.12, 0, 0]}
-          scale={[0.85, 0.8, 1.28]}
-        >
-          <icosahedronGeometry args={[0.27, 1]} />
-          <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+        {/* Torso — a chubby, smooth egg, a touch longer than tall. */}
+        <mesh castShadow position={[0, 0.29, -0.05]} scale={[0.98, 0.86, 1.2]}>
+          <sphereGeometry args={[0.3, 32, 24]} />
+          <Fur />
         </mesh>
-        {/* Haunches over the back hips, tucked well into the torso so they
-            blend rather than bolt on */}
+        {/* Round little haunches for a soft rear end */}
         {[-1, 1].map((s) => (
-          <mesh key={s} castShadow position={[s * 0.11, 0.27, -0.24]} scale={[0.95, 1.05, 1.15]}>
-            <icosahedronGeometry args={[0.14, 1]} />
-            <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+          <mesh key={s} castShadow position={[s * 0.13, 0.27, -0.26]} scale={[1, 1.05, 1.05]}>
+            <sphereGeometry args={[0.15, 24, 18]} />
+            <Fur />
           </mesh>
         ))}
-        {/* Neck — bridges the torso's shoulders and the base of the skull so
-            head and body read as one continuous form */}
-        <mesh castShadow position={[0, 0.45, 0.21]} scale={[0.82, 0.95, 0.78]}>
-          <icosahedronGeometry args={[0.17, 1]} />
-          <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+        {/* Neck — bridges chubby shoulders and the base of the round skull */}
+        <mesh castShadow position={[0, 0.43, 0.16]} scale={[0.86, 0.9, 0.82]}>
+          <sphereGeometry args={[0.17, 24, 18]} />
+          <Fur />
         </mesh>
-        {/* Cream bib running from the belly up the throat to the chin, like
-            the reference figurine */}
-        <mesh castShadow position={[0, 0.3, 0.19]} scale={[0.6, 1.05, 0.46]}>
-          <icosahedronGeometry args={[0.2, 1]} />
-          <meshStandardMaterial color={CREAM} roughness={0.75} flatShading />
+        {/* Cream bib down the chest and throat */}
+        <mesh castShadow position={[0, 0.28, 0.21]} scale={[0.64, 1.02, 0.5]}>
+          <sphereGeometry args={[0.2, 24, 18]} />
+          <Fur color={CREAM} />
         </mesh>
 
-        {/* Head group (front, +z) — natural size, settled onto the neck */}
-        <group ref={head} position={[0, 0.56, 0.27]}>
-          {/* Faceted wedge of a skull. The X tilt (atan(1/φ²) ≈ 0.365) aligns
-              a face center with +z so a flat facet, not a corner, points
-              forward. */}
-          <mesh castShadow rotation={[0.365, 0, 0]} scale={[1.02, 0.92, 0.88]}>
-            <icosahedronGeometry args={[0.24, 1]} />
-            <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+        {/* Head group (front, +z) — big and round for a cute, top-heavy look */}
+        <group ref={head} position={[0, 0.54, 0.24]}>
+          {/* Round skull */}
+          <mesh castShadow scale={[1.06, 1, 0.96]}>
+            <sphereGeometry args={[0.27, 32, 24]} />
+            <Fur />
           </mesh>
-          {/* Cream muzzle and chin filling the lower half of the face */}
-          <mesh castShadow position={[0, -0.095, 0.13]} scale={[0.8, 0.58, 0.62]}>
-            <icosahedronGeometry args={[0.15, 1]} />
-            <meshStandardMaterial color={CREAM} roughness={0.75} flatShading />
+          {/* Cream muzzle filling the lower front of the face */}
+          <mesh castShadow position={[0, -0.1, 0.17]} scale={[0.92, 0.72, 0.7]}>
+            <sphereGeometry args={[0.16, 24, 18]} />
+            <Fur color={CREAM} />
           </mesh>
-          {/* Small dark nose where fur meets muzzle */}
-          <mesh position={[0, -0.045, 0.245]} rotation={[Math.PI, 0, 0]}>
-            <coneGeometry args={[0.024, 0.032, 4]} />
-            <meshStandardMaterial color={NOSE} roughness={0.5} flatShading />
-          </mesh>
-          {/* Small amber eyes, wide-set and slightly embedded in the face —
-              a touch of emissive keeps them visible against the black fur */}
+          {/* Chubby cream cheeks */}
           {[-1, 1].map((s) => (
-            <mesh key={s} position={[s * 0.1, 0.035, 0.19]} scale={[1, 1.25, 0.45]}>
-              <icosahedronGeometry args={[0.036, 1]} />
-              <meshStandardMaterial
-                color={EYE}
-                emissive="#9a6a1c"
-                emissiveIntensity={0.5}
-                roughness={0.25}
-                flatShading
-              />
+            <mesh key={s} castShadow position={[s * 0.16, -0.05, 0.09]} scale={[1, 0.92, 0.92]}>
+              <sphereGeometry args={[0.11, 20, 16]} />
+              <Fur color={CREAM} />
             </mesh>
           ))}
-          {/* Pointed ears with darker inners */}
-          <mesh castShadow position={[-0.14, 0.25, -0.03]} rotation={[0, 0.35, -0.22]}>
-            <coneGeometry args={[0.1, 0.21, 4]} />
-            <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+          {/* Little pink button nose */}
+          <mesh position={[0, -0.035, 0.28]} scale={[1.3, 0.95, 0.8]}>
+            <sphereGeometry args={[0.032, 16, 12]} />
+            <meshStandardMaterial color={PINK} roughness={0.6} />
           </mesh>
-          <mesh castShadow position={[0.14, 0.25, -0.03]} rotation={[0, -0.35, 0.22]}>
-            <coneGeometry args={[0.1, 0.21, 4]} />
-            <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
-          </mesh>
-          <mesh position={[-0.135, 0.235, -0.005]} rotation={[0, 0.35, -0.22]}>
-            <coneGeometry args={[0.058, 0.13, 4]} />
-            <meshStandardMaterial color={FUR_DARK} roughness={0.75} flatShading />
-          </mesh>
-          <mesh position={[0.135, 0.235, -0.005]} rotation={[0, -0.35, 0.22]}>
-            <coneGeometry args={[0.058, 0.13, 4]} />
-            <meshStandardMaterial color={FUR_DARK} roughness={0.75} flatShading />
-          </mesh>
+          {/* Big glossy amber eyes with dark pupils and a bright catchlight */}
+          {[-1, 1].map((s) => (
+            <group key={s} position={[s * 0.12, 0.035, 0.19]}>
+              <mesh scale={[1, 1.12, 0.7]}>
+                <sphereGeometry args={[0.078, 24, 18]} />
+                <meshStandardMaterial
+                  color={EYE}
+                  emissive="#8a5c18"
+                  emissiveIntensity={0.35}
+                  roughness={0.18}
+                />
+              </mesh>
+              <mesh position={[0, 0, 0.05]} scale={[0.82, 1.15, 0.6]}>
+                <sphereGeometry args={[0.046, 20, 16]} />
+                <meshStandardMaterial color={PUPIL} roughness={0.2} />
+              </mesh>
+              <mesh position={[s * -0.018 + 0.02, 0.04, 0.085]}>
+                <sphereGeometry args={[0.02, 12, 10]} />
+                <meshStandardMaterial
+                  color={HILITE}
+                  emissive={HILITE}
+                  emissiveIntensity={0.7}
+                  roughness={0.3}
+                />
+              </mesh>
+            </group>
+          ))}
+          {/* Soft, rounded ears with pink inners */}
+          {[-1, 1].map((s) => (
+            <group key={s} position={[s * 0.15, 0.24, -0.01]} rotation={[0, -s * 0.4, s * 0.22]}>
+              <mesh castShadow>
+                <coneGeometry args={[0.11, 0.23, 20]} />
+                <Fur />
+              </mesh>
+              <mesh position={[0, -0.01, 0.03]}>
+                <coneGeometry args={[0.062, 0.15, 20]} />
+                <meshStandardMaterial color={PINK} roughness={0.7} />
+              </mesh>
+            </group>
+          ))}
         </group>
       </group>
 
-      {/* Tail — slim and long, carried up in a lazy curve, cream at the tip
-          like the figurine. Pivots at the base, behind the body. */}
-      <group ref={tail} position={[0, 0.32, -0.38]}>
-        <mesh castShadow position={[0, 0.1, -0.03]} rotation={[0.25, 0, 0]}>
-          <cylinderGeometry args={[0.04, 0.052, 0.24, 6]} />
-          <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+      {/* Plush tail — a fluffy curl of soft spheres rising behind her, tipped
+          in cream. Pivots at the base so it can sway. */}
+      <group ref={tail} position={[0, 0.32, -0.4]}>
+        <mesh castShadow position={[0, 0.06, -0.01]}>
+          <sphereGeometry args={[0.075, 18, 14]} />
+          <Fur />
         </mesh>
-        <mesh castShadow position={[0.03, 0.25, 0.0]} rotation={[-0.35, 0, -0.35]}>
-          <cylinderGeometry args={[0.033, 0.042, 0.17, 6]} />
-          <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+        <mesh castShadow position={[0.01, 0.16, -0.02]}>
+          <sphereGeometry args={[0.07, 18, 14]} />
+          <Fur />
         </mesh>
-        <mesh castShadow position={[0.085, 0.32, 0.02]} scale={[1, 1.15, 1]}>
-          <icosahedronGeometry args={[0.048, 1]} />
-          <meshStandardMaterial color={CREAM} roughness={0.75} flatShading />
+        <mesh castShadow position={[0.05, 0.25, -0.01]}>
+          <sphereGeometry args={[0.065, 18, 14]} />
+          <Fur />
+        </mesh>
+        <mesh castShadow position={[0.11, 0.32, 0.02]}>
+          <sphereGeometry args={[0.062, 18, 14]} />
+          <Fur />
+        </mesh>
+        {/* Cream fluffy tip */}
+        <mesh castShadow position={[0.17, 0.37, 0.05]} scale={[1.05, 1.1, 1.05]}>
+          <sphereGeometry args={[0.062, 18, 14]} />
+          <Fur color={CREAM} />
         </mesh>
       </group>
 
-      {/* Legs — each pivoting at the hip, with cream paw tips. */}
+      {/* Short, stubby legs — each pivoting at the hip, with soft cream paws. */}
       {LEGS.map(([x, z], i) => (
         <group
           key={i}
           ref={(el) => {
             legs.current[i] = el
           }}
-          position={[x, 0.16, z]}
+          position={[x, 0.15, z]}
         >
-          <mesh castShadow position={[0, -0.07, 0]} rotation={[0, Math.PI / 4, 0]}>
-            <cylinderGeometry args={[0.055, 0.048, 0.15, 6]} />
-            <meshStandardMaterial color={FUR} roughness={0.7} flatShading />
+          <mesh castShadow position={[0, -0.045, 0]}>
+            <cylinderGeometry args={[0.075, 0.062, 0.12, 16]} />
+            <Fur />
           </mesh>
-          {/* Cream paw tip */}
-          <mesh castShadow position={[0, -0.135, 0.015]} scale={[1, 0.6, 1.15]}>
-            <icosahedronGeometry args={[0.052, 1]} />
-            <meshStandardMaterial color={CREAM} roughness={0.75} flatShading />
+          {/* Rounded cream paw */}
+          <mesh castShadow position={[0, -0.105, 0.012]} scale={[1, 0.8, 1.15]}>
+            <sphereGeometry args={[0.062, 18, 14]} />
+            <Fur color={CREAM} />
           </mesh>
         </group>
       ))}
